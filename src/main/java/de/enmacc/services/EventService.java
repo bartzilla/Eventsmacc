@@ -1,7 +1,7 @@
 package de.enmacc.services;
 
 import de.enmacc.domain.Event;
-
+import de.enmacc.services.exceptions.EventNotFoundException;
 import java.util.List;
 
 public interface EventService
@@ -10,9 +10,9 @@ public interface EventService
 
     List<Event> getAllEvents();
 
-    Event findById(Long id);
+    Event findById(String id) throws EventNotFoundException;
 
-    Event updateEvent(Long id, Event event);
+    Event updateEvent(String id, Event event) throws EventNotFoundException;
 
-    void deleteEvent(Long id);
+    void deleteEvent(String id) throws EventNotFoundException;
 }

@@ -2,6 +2,7 @@ package de.enmacc.controllers;
 
 import de.enmacc.domain.Event;
 import de.enmacc.services.EventService;
+import de.enmacc.services.exceptions.EventNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,8 +22,8 @@ public class EventController
         return eventService.getAllEvents();
     }
 
-    @RequestMapping("/events/{id}")
-    public Event findById(@PathVariable("id") Long id)
+    @RequestMapping(value = "/events/{id}", method = RequestMethod.GET)
+    public Event findById(@PathVariable("id") String id) throws EventNotFoundException
     {
         return eventService.findById(id);
     }
@@ -34,15 +35,15 @@ public class EventController
         return new ResponseEntity<>(event, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/events/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Event> updateEvent(@RequestBody Event event, @PathVariable Long id)
+    @RequestMapping(value = "/events/{id}", method = RequestMethod.POST)
+    public ResponseEntity<Event> updateEvent(@RequestBody Event event, @PathVariable String id)throws EventNotFoundException
     {
         Event updatedEvent = eventService.updateEvent(id, event);
         return new ResponseEntity<>(updatedEvent, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/events/{id}", method = RequestMethod.DELETE)
-    public void deleteEvent(@PathVariable Long id)
+    public void deleteEvent(@PathVariable String id) throws EventNotFoundException
     {
         eventService.deleteEvent(id);
     }
