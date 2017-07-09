@@ -1,29 +1,34 @@
 package de.enmacc.domain;
+import org.joda.time.DateTime;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 @Entity
 public class Event
 {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
-    private String id;
+    private Long id;
+    @NotNull
     private String name;
+    @NotNull
     private String description;
-    private String startTime;
-    private String duration;
+    @NotNull @Future
+    private DateTime startTime;
+
+    private Integer duration;
 
     public Event(){}
 
-    public String getId()
+    public Long getId()
     {
         return id;
     }
 
-    public void setId(String id)
+    public void setId(Long id)
     {
         this.id = id;
     }
@@ -48,22 +53,22 @@ public class Event
         this.description = description;
     }
 
-    public String getStartTime()
+    public DateTime getStartTime()
     {
         return startTime;
     }
 
-    public void setStartTime(String startTime)
+    public void setStartTime(DateTime startTime)
     {
         this.startTime = startTime;
     }
 
-    public String getDuration()
+    public Integer getDuration()
     {
         return duration;
     }
 
-    public void setDuration(String duration)
+    public void setDuration(Integer duration)
     {
         this.duration = duration;
     }

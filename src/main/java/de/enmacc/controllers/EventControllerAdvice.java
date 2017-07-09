@@ -1,37 +1,60 @@
 package de.enmacc.controllers;
 
-import de.enmacc.domain.ClientErrorInformation;
+import de.enmacc.domain.Error;
 import de.enmacc.services.exceptions.EventNotFoundException;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.validation.BindException;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 
 @ControllerAdvice(basePackageClasses = EventController.class)
 public class EventControllerAdvice extends ResponseEntityExceptionHandler
 {
-    @ExceptionHandler(Throwable.class)
-    ResponseEntity<ClientErrorInformation> handleControllerException(HttpServletRequest request, Throwable ex)
-    {
-        HttpStatus status = getStatus(request);
-        return new ResponseEntity<>(new ClientErrorInformation(status.value(), ex.getMessage()), status);
-    }
-
     @ExceptionHandler(EventNotFoundException.class)
-    ResponseEntity<ClientErrorInformation> handleEventNotFoundException(EventNotFoundException ex) {
-        return new ResponseEntity<>(new ClientErrorInformation(HttpStatus.NOT_FOUND.value(), ex.getMessage()), HttpStatus.NOT_FOUND);
+    ResponseEntity<Error> handleEventNotFoundException(EventNotFoundException e)
+    {
+        return new ResponseEntity<>(new Error(HttpStatus.NOT_FOUND.value(), e.getMessage()), HttpStatus.NOT_FOUND);
     }
 
-    private HttpStatus getStatus(HttpServletRequest request)
+    @Override
+    protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException e, HttpHeaders headers, HttpStatus status, WebRequest request)
     {
-        Integer statusCode = (Integer) request.getAttribute("javax.servlet.error.status_code");
-        if (statusCode == null) {
-            return HttpStatus.INTERNAL_SERVER_ERROR;
+        Throwable mostSpecificCause = e.getMostSpecificCause();
+        Error errorMessage;
+        if (mostSpecificCause != null) {
+            String exceptionName = mostSpecificCause.getClass().getName();
+            String message = mostSpecificCause.getMessage();
+            errorMessage = new Error(HttpStatus.BAD_REQUEST.value(), message);
+        } else {
+            errorMessage = new Error(HttpStatus.BAD_REQUEST.value(), e.getMessage());
         }
-        return HttpStatus.valueOf(statusCode);
+        return new ResponseEntity(errorMessage, headers, status);
+    }
+
+    @Override
+    protected final ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException e, HttpHeaders headers, HttpStatus status, WebRequest request)
+    {
+        List<FieldError> fieldErrors = e.getBindingResult().getFieldErrors();
+        List<String> errors = new ArrayList<>(fieldErrors.size());
+
+        for (FieldError fieldError : fieldErrors)
+        {
+            errors.add(fieldError.getField() + ", " + fieldError.getDefaultMessage());
+        }
+
+        return new ResponseEntity<>(new Error(HttpStatus.BAD_REQUEST.value(), errors), headers, status);
     }
 
 }
