@@ -1,10 +1,12 @@
 package de.enmacc.domain;
-import org.joda.time.DateTime;
 
-import javax.persistence.*;
+import org.joda.time.DateTime;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
 
 @Entity
 public class Event
@@ -22,6 +24,14 @@ public class Event
     private Integer duration;
 
     public Event(){}
+
+    public Event(String name, String description, DateTime startTime, Integer duration)
+    {
+        this.name = name;
+        this.description = description;
+        this.startTime = startTime;
+        this.duration = duration;
+    }
 
     public Long getId()
     {
