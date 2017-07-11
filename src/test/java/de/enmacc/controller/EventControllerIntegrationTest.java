@@ -21,8 +21,13 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import javax.transaction.Transactional;
 import java.nio.charset.Charset;
+import java.util.List;
 
+import static junit.framework.TestCase.assertTrue;
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
+import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -30,6 +35,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @WebAppConfiguration
+@Transactional
 @TestPropertySource(locations = "classpath:application-integrationtest.properties")
 public class EventControllerIntegrationTest
 {
@@ -97,6 +103,18 @@ public class EventControllerIntegrationTest
 
     @Test
     @WithMockUser
+    public void testGetAllEvents() throws Exception
+    {
+        this.testCreateEvent();
+
+        mockMvc.perform(get("/events").contentType(contentType))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(contentType))
+                .andExpect(jsonPath("$", hasSize(greaterThanOrEqualTo(1))));
+    }
+
+    @Test
+    @WithMockUser
     public void testUpdateEvent() throws Exception
     {
         this.testCreateEvent();
@@ -130,6 +148,5 @@ public class EventControllerIntegrationTest
         Event event = eventController.findById(id);
 
     }
-
 
 }

@@ -12,7 +12,6 @@ import java.util.List;
 @Service
 public class EventServiceImpl implements EventService
 {
-
     @Autowired
     private EventRepository data;
 
