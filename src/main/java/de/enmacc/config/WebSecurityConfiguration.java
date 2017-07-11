@@ -10,6 +10,13 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
+/**
+ *  Configuration to provide basic authentication. Please be aware this is not production ready.
+ *  It is just a sample. Further improvements need to be done. e.g auth2 with jwt's
+ *
+ *  @author Cipriano Sanchez
+ */
+
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)

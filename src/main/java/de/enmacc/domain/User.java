@@ -11,8 +11,11 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
 /**
- * Created by ciprianosanchez on 7/10/17.
+ * Concrete class to represent User objects.
+ *
+ *  @author Cipriano Sanchez
  */
+
 @Entity
 public class User
 {
@@ -38,11 +41,6 @@ public class User
         this.username = username;
         setPassword(password);
         this.roles = roles;
-    }
-
-    public void setPassword(String password)
-    {
-        this.password = PASSWORD_ENCODER.encode(password);
     }
 
     public static PasswordEncoder getPasswordEncoder()
@@ -73,6 +71,11 @@ public class User
     public String getPassword()
     {
         return password;
+    }
+
+    public void setPassword(String password)
+    {
+        this.password = PASSWORD_ENCODER.encode(password);
     }
 
     public String[] getRoles()

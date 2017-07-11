@@ -23,6 +23,11 @@ import static org.mockito.Matchers.anyLong;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.mock;
 
+/**
+ * Unit Test for EventService
+ *
+ *  @author Cipriano Sanchez
+ */
 
 @RunWith(MockitoJUnitRunner.class)
 public class EventServiceTest

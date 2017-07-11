@@ -7,7 +7,14 @@ import de.enmacc.services.exceptions.EventNotFoundException;
 import org.apache.commons.lang.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
+
+/**
+ * This class represents a concrete implementation of the {@link EventService} interface.
+ *
+ *  @author Cipriano Sanchez
+ */
 
 @Service
 public class EventServiceImpl implements EventService

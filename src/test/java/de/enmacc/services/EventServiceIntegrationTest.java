@@ -16,6 +16,13 @@ import java.util.List;
 
 import static junit.framework.TestCase.assertTrue;
 
+
+/**
+ * Integration Test for EventService
+ *
+ *  @author Cipriano Sanchez
+ */
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Transactional

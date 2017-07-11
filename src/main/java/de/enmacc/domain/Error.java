@@ -3,13 +3,18 @@ package de.enmacc.domain;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Concrete class to represent Error objects to be sent as custom responses.
+ *
+ *  @author Cipriano Sanchez
+ */
+
 public class Error
 {
+    private static String MORE_INFO = "mailto:support@eventsmacc.com";
     private int code;
     private List<String> errors;
     private String moreInfo;
-
-    private static String MORE_INFO = "mailto:support@eventsmacc.com";
 
     public Error()
     {

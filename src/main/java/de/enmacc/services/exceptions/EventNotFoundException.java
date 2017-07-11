@@ -1,7 +1,7 @@
 package de.enmacc.services.exceptions;
 
 /**
- * This class represents a generic unchecked exception. It is thrown whenever a resource has not been found.
+ * This class represents a generic exception. It is thrown whenever a resource has not been found.
  *
  * @author Cipriano Sanchez
  */

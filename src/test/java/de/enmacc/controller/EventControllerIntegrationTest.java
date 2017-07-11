@@ -23,14 +23,17 @@ import org.springframework.web.context.WebApplicationContext;
 
 import javax.transaction.Transactional;
 import java.nio.charset.Charset;
-import java.util.List;
 
-import static junit.framework.TestCase.assertTrue;
-import static org.hamcrest.Matchers.greaterThanOrEqualTo;
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+
+/**
+ * Integration Test for EventController
+ *
+ *  @author Cipriano Sanchez
+ */
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

@@ -3,6 +3,12 @@ package de.enmacc;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ *  Application starter for Spring Boot
+ *
+ *  @author Cipriano Sanchez
+ */
+
 @SpringBootApplication
 public class EventsmaccApplication {
 

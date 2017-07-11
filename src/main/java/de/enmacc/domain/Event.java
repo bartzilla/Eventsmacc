@@ -1,12 +1,19 @@
 package de.enmacc.domain;
 
 import org.joda.time.DateTime;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
+
+/**
+ * Concrete class to represent Event objects.
+ *
+ *  @author Cipriano Sanchez
+ */
 
 @Entity
 public class Event

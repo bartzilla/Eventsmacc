@@ -9,6 +9,12 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
+/**
+ * This class represents a concrete implementation of the {@link UserDetailsService} interface.
+ *
+ *  @author Cipriano Sanchez
+ */
+
 @Component
 public class DetailsService implements UserDetailsService
 {
