@@ -27,7 +27,7 @@ public class Event
     private String description;
     @NotNull @Future
     private DateTime startTime;
-
+    @NotNull
     private Integer duration;
 
     public Event(){}
@@ -89,5 +89,22 @@ public class Event
     public void setDuration(Integer duration)
     {
         this.duration = duration;
+    }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o) return true;
+        if (!(o instanceof Event)) return false;
+
+        Event event = (Event) o;
+
+        return id != null ? id.equals(event.id) : event.id == null;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return id != null ? id.hashCode() : 0;
     }
 }

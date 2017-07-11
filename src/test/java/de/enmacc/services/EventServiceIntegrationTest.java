@@ -26,7 +26,6 @@ import static junit.framework.TestCase.assertTrue;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Transactional
-@TestPropertySource(locations = "classpath:application-integrationtest.properties")
 public class EventServiceIntegrationTest
 {
     @Autowired

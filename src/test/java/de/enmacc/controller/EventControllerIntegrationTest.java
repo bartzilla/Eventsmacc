@@ -39,7 +39,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @WebAppConfiguration
 @Transactional
-@TestPropertySource(locations = "classpath:application-integrationtest.properties")
 public class EventControllerIntegrationTest
 {
     private MockMvc mockMvc;

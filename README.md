@@ -5,8 +5,7 @@ Demo Project for Enmacc
 
 Requirements
 - JDK 8, Maven 3.X, MySQL, and Git
-- Production schema: eventsmacc. 
-- Test schema: eventsmacc-test
+- DB Schema name: "eventsmacc" 
 
 Cloning the Repo
 - git clone https://github.com/bartzilla/Eventsmacc.git
