@@ -36,8 +36,8 @@ public class EventController
     @RequestMapping(value = "/events", method = RequestMethod.POST)
     public ResponseEntity<Event> createEvent(@RequestBody @Valid Event event)
     {
-        eventService.createEvent(event);
-        return new ResponseEntity<>(event, HttpStatus.CREATED);
+        Event createdEvent = eventService.createEvent(event);
+        return new ResponseEntity<>(createdEvent, HttpStatus.CREATED);
     }
 
     @PreAuthorize("authenticated")

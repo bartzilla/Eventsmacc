@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.joda.JodaModule;
 import de.enmacc.controllers.EventController;
 import de.enmacc.domain.Event;
+import de.enmacc.services.exceptions.EventNotFoundException;
 import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,8 +24,7 @@ import org.springframework.web.context.WebApplicationContext;
 import java.nio.charset.Charset;
 
 import static org.hamcrest.Matchers.is;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class)
@@ -62,6 +62,20 @@ public class EventControllerIntegrationTest
 
         mockMvc.perform(get("/events/{id}", "abc"))
                 .andExpect(status().isNotFound());
+
+        Event event = new Event("Event 1", "A description 1", new DateTime().plusMonths(1), 90);
+
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.registerModule(new JodaModule());
+        String eventJson = mapper.writeValueAsString(event);
+
+        mockMvc.perform(post("/events/{id}", "abc").contentType(contentType)
+                .content(eventJson))
+                .andExpect(status().isNotFound());
+
+        mockMvc.perform(delete("/events/{id}", "abc").contentType(contentType)
+                .content(eventJson))
+                .andExpect(status().isNotFound());
     }
 
     @Test
@@ -85,17 +99,37 @@ public class EventControllerIntegrationTest
     @WithMockUser
     public void testUpdateEvent() throws Exception
     {
-        Event event = new Event("Event 1", "A description which has been modified for event 1", new DateTime().plusMonths(1), 90);
+        this.testCreateEvent();
+
+        final Event eventToUpdate = eventController.getAllEvents().get(0);
+        eventToUpdate.setDescription("Modified Event");
 
         ObjectMapper mapper = new ObjectMapper();
         mapper.registerModule(new JodaModule());
-        String eventJson = mapper.writeValueAsString(event);
+        String eventToUpdateAsJson = mapper.writeValueAsString(eventToUpdate);
 
-        mockMvc.perform(post("/events").contentType(contentType)
-                .content(eventJson))
-                .andExpect(status().isCreated())
+        mockMvc.perform(post("/events/{id}", eventToUpdate.getId()).contentType(contentType)
+                .content(eventToUpdateAsJson))
+                .andExpect(status().isOk())
                 .andExpect(content().contentType(contentType))
-                .andExpect(jsonPath("$.description", is(event.getDescription())));
+                .andExpect(jsonPath("$.description", is(eventToUpdate.getDescription())));
     }
+
+    @WithMockUser
+    @Test(expected = EventNotFoundException.class)
+    public void testDeleteEvent() throws Exception
+    {
+        this.testCreateEvent();
+
+        final Event eventToDelete = eventController.getAllEvents().get(0);
+        String id = String.valueOf(eventToDelete.getId());
+
+        mockMvc.perform(delete("/events/{id}", id))
+                .andExpect(status().isNoContent());
+
+        Event event = eventController.findById(id);
+
+    }
+
 
 }

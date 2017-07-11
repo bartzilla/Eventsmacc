@@ -27,6 +27,7 @@ public class Event
 
     public Event(String name, String description, DateTime startTime, Integer duration)
     {
+        this.id = null;
         this.name = name;
         this.description = description;
         this.startTime = startTime;
