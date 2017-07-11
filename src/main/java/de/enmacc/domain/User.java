@@ -27,7 +27,7 @@ public class User
     @JsonIgnore
     private String[] roles;
 
-    protected User()
+    public User()
     {
         super();
     }

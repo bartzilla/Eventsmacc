@@ -26,15 +26,15 @@ public class DatabaseLoader implements ApplicationRunner
     @Override
     public void run(ApplicationArguments args) throws Exception
     {
-//        Event event = new Event("Wolf Biermann und das Zentral Quartett - Wolf Biermann & das Zentral Quartett",
-//                "Mit der Ankündigung der Sommer-Tour schließt der Brite nahtlos an seinen gefeierten Auftritt beim...",
-//                new DateTime("2018-07-29T15:19:00.000Z"), 90);
-//
-//        events.save(event);
-//
-//        String[] roles = {"USER_ROLE"};
-//        User user = new User("bartzilla", "1234", roles);
-//
-//        users.save(user);
+        Event event = new Event("Wolf Biermann und das Zentral Quartett - Wolf Biermann & das Zentral Quartett",
+                "Mit der Ankündigung der Sommer-Tour schließt der Brite nahtlos an seinen gefeierten Auftritt beim...",
+                new DateTime("2018-07-29T15:19:00.000Z"), 90);
+
+        events.save(event);
+
+        String[] roles = {"ADMIN"};
+        User user = new User("test", "1234", roles);
+
+        users.save(user);
     }
 }

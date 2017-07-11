@@ -29,7 +29,7 @@ CREATE TABLE `event` (
   `name` varchar(255) NOT NULL,
   `start_time` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `event` (
 
 LOCK TABLES `event` WRITE;
 /*!40000 ALTER TABLE `event` DISABLE KEYS */;
-INSERT INTO `event` VALUES (1,'Mit der Ank√ºndigung der Sommer-Tour schlie√üt der Brite nahtlos an seinen gefeierten Auftritt beim...',90,'Wolf Biermann und das Zentral Quartett - Wolf Biermann & das Zentral Quartett','2018-07-29 17:19:00'),(2,'Mit der Ank√ºndigung der Sommer-Tour schlie√üt der Brite nahtlos an seinen gefeierten Auftritt beim...',90,'Wolf Biermann und das Zentral Quartett - Wolf Biermann & das Zentral Quartett','2018-07-29 17:19:00'),(3,'Mit der Ank√ºndigung der Sommer-Tour schlie√üt der Brite nahtlos an seinen gefeierten Auftritt beim...',90,'Wolf Biermann und das Zentral Quartett - Wolf Biermann & das Zentral Quartett','2018-07-29 17:19:00'),(4,'A description 1',90,'Event 1','2018-07-29 17:19:00');
+INSERT INTO `event` VALUES (1,'Mit der Ank√ºndigung der Sommer-Tour schlie√üt der Brite nahtlos an seinen gefeierten Auftritt beim...',90,'Wolf Biermann und das Zentral Quartett - Wolf Biermann & das Zentral Quartett','2018-07-29 17:19:00');
 /*!40000 ALTER TABLE `event` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -64,7 +64,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'$2a$10$XE/X/UP2qMDFfiiY2i.hietvEXJ1oc28bEBVOYwZc1jr0XKeRSDC.','¨\Ì\0ur\0[Ljava.lang.String;≠\“V\Á\È{G\0\0xp\0\0\0t\0	USER_ROLE','bartzilla');
+INSERT INTO `user` VALUES (1,'$2a$10$M1iKg40vdw03JDKlj/c.xe6MOfnFQwJgZ/cKL/2Ml7UTFdsvnFzFm','¨\Ì\0ur\0[Ljava.lang.String;≠\“V\Á\È{G\0\0xp\0\0\0t\0ADMIN','bartzilla');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -77,4 +77,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-07-10 17:43:05
+-- Dump completed on 2017-07-11  8:05:05
