@@ -47,7 +47,7 @@ public class EventController
     }
 
     @PreAuthorize("authenticated")
-    @RequestMapping(value = "/events/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/events/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Event> updateEvent(@RequestBody @Valid Event event, @PathVariable String id)throws EventNotFoundException
     {
         Event updatedEvent = eventService.updateEvent(id, event);

@@ -77,7 +77,7 @@ public class EventControllerIntegrationTest
         mapper.registerModule(new JodaModule());
         String eventJson = mapper.writeValueAsString(event);
 
-        mockMvc.perform(post("/events/{id}", "abc").contentType(contentType)
+        mockMvc.perform(put("/events/{id}", "abc").contentType(contentType)
                 .content(eventJson))
                 .andExpect(status().isNotFound());
 
@@ -128,7 +128,7 @@ public class EventControllerIntegrationTest
         mapper.registerModule(new JodaModule());
         String eventToUpdateAsJson = mapper.writeValueAsString(eventToUpdate);
 
-        mockMvc.perform(post("/events/{id}", eventToUpdate.getId()).contentType(contentType)
+        mockMvc.perform(put("/events/{id}", eventToUpdate.getId()).contentType(contentType)
                 .content(eventToUpdateAsJson))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(contentType))

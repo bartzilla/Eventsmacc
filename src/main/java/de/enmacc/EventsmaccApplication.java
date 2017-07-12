@@ -8,7 +8,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  *
  *  @author An anonymous but friendly Spring developer
  */
-
 @SpringBootApplication
 public class EventsmaccApplication
 {
