@@ -6,13 +6,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  *  Application starter for Spring Boot
  *
- *  @author Cipriano Sanchez
+ *  @author An anonymous but friendly Spring developer
  */
 
 @SpringBootApplication
-public class EventsmaccApplication {
+public class EventsmaccApplication
+{
 
-	public static void main(String[] args) {
+	public static void main(String[] args)
+    {
 		SpringApplication.run(EventsmaccApplication.class, args);
 	}
 }
