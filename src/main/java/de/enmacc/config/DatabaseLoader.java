@@ -1,9 +1,7 @@
 package de.enmacc.config;
 
 import de.enmacc.data.EventRepository;
-import de.enmacc.data.UserRepository;
 import de.enmacc.domain.Event;
-import de.enmacc.domain.User;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -20,12 +18,12 @@ import org.springframework.stereotype.Component;
 public class DatabaseLoader implements ApplicationRunner
 {
     private final EventRepository events;
-    private final UserRepository users;
+//    private final UserRepository users;
 
     @Autowired
-    public DatabaseLoader(EventRepository events, UserRepository users)
+    public DatabaseLoader(EventRepository events) //, UserRepository users)
     {
-        this.users = users;
+//        this.users = users;
         this.events = events;
     }
 
@@ -38,9 +36,9 @@ public class DatabaseLoader implements ApplicationRunner
 
         events.save(event);
 
-        String[] roles = {"ADMIN"};
-        User user = new User("test", "1234", roles);
+//        String[] roles = {"ADMIN"};
+//        User user = new User("test", "1234", roles);
 
-        users.save(user);
+//        users.save(user);
     }
 }
