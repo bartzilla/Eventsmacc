@@ -36,10 +36,13 @@ public class EventControllerAdvice extends ResponseEntityExceptionHandler
     {
         Throwable mostSpecificCause = e.getMostSpecificCause();
         Error errorMessage;
-        if (mostSpecificCause != null) {
+        if (mostSpecificCause != null)
+        {
             String message = mostSpecificCause.getMessage();
             errorMessage = new Error(HttpStatus.BAD_REQUEST.value(), message);
-        } else {
+        }
+        else
+        {
             errorMessage = new Error(HttpStatus.BAD_REQUEST.value(), e.getMessage());
         }
         return new ResponseEntity(errorMessage, headers, status);
