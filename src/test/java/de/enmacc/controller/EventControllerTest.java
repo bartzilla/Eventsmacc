@@ -122,13 +122,13 @@ public class EventControllerTest
                 .andExpect(jsonPath("$.name", is(event.getName())));
     }
 
-//    @Test
-//    public void testDeleteEvent() throws Exception
-//    {
-//        doNothing().when(eventService).deleteEvent("1234");
-//
-//        mockMvc.perform(delete("/events/{id}", "1234"))
-//                .andExpect(status().isNoContent());
-//    }
+    @Test
+    public void testDeleteEvent() throws Exception
+    {
+        doNothing().when(eventService).deleteEvent("1234");
+
+        mockMvc.perform(delete("/events/{id}", "1234"))
+                .andExpect(status().isNoContent());
+    }
 
 }
