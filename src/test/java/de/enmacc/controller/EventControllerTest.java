@@ -61,7 +61,8 @@ public class EventControllerTest
     }
 
     @Test
-    public void getEventById() throws Exception {
+    public void getEventById() throws Exception
+    {
         Event event = new Event("Event 1", "A description 1", new DateTime(), 90);
 
         when(eventService.findById("1")).thenReturn(event);
