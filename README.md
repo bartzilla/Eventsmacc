@@ -1,8 +1,6 @@
 Eventsmacc
 =======
 
-Demo Project for Enmacc
-
 Requirements
 - JDK 8, Maven 3.X, MySQL, and Git
 - DB Schema name: "eventsmacc" 
